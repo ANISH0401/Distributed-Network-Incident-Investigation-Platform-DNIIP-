@@ -1,0 +1,19 @@
+INCIDENT REPORT
+Incident ID:
+INC-1003
+
+Symptoms:
+  - node-e: interface eth0 is down
+
+Root Cause:
+Link Failure
+
+Confidence:
+95%
+
+Recommendations:
+  - Physically inspect cabling/SFP on affected interface
+  - Check switch port status and error counters
+  - Verify NIC driver/firmware health
+  - Fail over to redundant link if available
+

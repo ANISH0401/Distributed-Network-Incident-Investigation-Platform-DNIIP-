@@ -1,0 +1,170 @@
+[
+    {
+        "first_seen": "2026-09-27T13:03:03Z",
+        "last_seen": "2026-09-27T14:03:03Z",
+        "latest_telemetry": {
+            "cpu_usage": 12.0,
+            "dns_resolvable": true,
+            "gateway_reachable": true,
+            "interfaces": [
+                {
+                    "name": "eth0",
+                    "rx_bytes": 123456789,
+                    "rx_dropped": 0,
+                    "rx_errors": 0,
+                    "tx_bytes": 98765432,
+                    "tx_dropped": 0,
+                    "tx_errors": 0,
+                    "up": true
+                }
+            ],
+            "memory_usage": 30.0,
+            "node_id": "node-a",
+            "packet_loss": 0.0,
+            "rtt_ms": 8.0,
+            "tcp_retransmits": 0,
+            "timestamp": "2026-09-27T14:03:03Z"
+        },
+        "node_id": "node-a"
+    },
+    {
+        "first_seen": "2026-09-27T13:03:03Z",
+        "last_seen": "2026-09-27T14:03:03Z",
+        "latest_telemetry": {
+            "cpu_usage": 78.0,
+            "dns_resolvable": true,
+            "gateway_reachable": true,
+            "interfaces": [
+                {
+                    "name": "eth0",
+                    "rx_bytes": 123456789,
+                    "rx_dropped": 0,
+                    "rx_errors": 0,
+                    "tx_bytes": 98765432,
+                    "tx_dropped": 0,
+                    "tx_errors": 0,
+                    "up": true
+                }
+            ],
+            "memory_usage": 82.0,
+            "node_id": "node-b",
+            "packet_loss": 35.0,
+            "rtt_ms": 320.0,
+            "tcp_retransmits": 22,
+            "timestamp": "2026-09-27T14:03:03Z"
+        },
+        "node_id": "node-b"
+    },
+    {
+        "first_seen": "2026-09-27T13:18:03Z",
+        "last_seen": "2026-09-27T13:48:03Z",
+        "latest_telemetry": {
+            "cpu_usage": 15.0,
+            "dns_resolvable": true,
+            "gateway_reachable": false,
+            "interfaces": [
+                {
+                    "name": "eth0",
+                    "rx_bytes": 123456789,
+                    "rx_dropped": 0,
+                    "rx_errors": 0,
+                    "tx_bytes": 98765432,
+                    "tx_dropped": 0,
+                    "tx_errors": 0,
+                    "up": true
+                }
+            ],
+            "memory_usage": 35.0,
+            "node_id": "node-c",
+            "packet_loss": 0.0,
+            "rtt_ms": 0.0,
+            "tcp_retransmits": 0,
+            "timestamp": "2026-09-27T13:48:03Z"
+        },
+        "node_id": "node-c"
+    },
+    {
+        "first_seen": "2026-09-27T13:18:03Z",
+        "last_seen": "2026-09-27T13:48:03Z",
+        "latest_telemetry": {
+            "cpu_usage": 15.0,
+            "dns_resolvable": true,
+            "gateway_reachable": false,
+            "interfaces": [
+                {
+                    "name": "eth0",
+                    "rx_bytes": 123456789,
+                    "rx_dropped": 0,
+                    "rx_errors": 0,
+                    "tx_bytes": 98765432,
+                    "tx_dropped": 0,
+                    "tx_errors": 0,
+                    "up": true
+                }
+            ],
+            "memory_usage": 35.0,
+            "node_id": "node-d",
+            "packet_loss": 0.0,
+            "rtt_ms": 0.0,
+            "tcp_retransmits": 0,
+            "timestamp": "2026-09-27T13:48:03Z"
+        },
+        "node_id": "node-d"
+    },
+    {
+        "first_seen": "2026-09-27T13:33:03Z",
+        "last_seen": "2026-09-27T14:03:03Z",
+        "latest_telemetry": {
+            "cpu_usage": 10.0,
+            "dns_resolvable": true,
+            "gateway_reachable": true,
+            "interfaces": [
+                {
+                    "name": "eth0",
+                    "rx_bytes": 123456789,
+                    "rx_dropped": 0,
+                    "rx_errors": 0,
+                    "tx_bytes": 98765432,
+                    "tx_dropped": 0,
+                    "tx_errors": 0,
+                    "up": false
+                }
+            ],
+            "memory_usage": 25.0,
+            "node_id": "node-e",
+            "packet_loss": 0.0,
+            "rtt_ms": 0.0,
+            "tcp_retransmits": 0,
+            "timestamp": "2026-09-27T14:03:03Z"
+        },
+        "node_id": "node-e"
+    },
+    {
+        "first_seen": "2026-09-27T13:33:03Z",
+        "last_seen": "2026-09-27T14:03:03Z",
+        "latest_telemetry": {
+            "cpu_usage": 18.0,
+            "dns_resolvable": false,
+            "gateway_reachable": true,
+            "interfaces": [
+                {
+                    "name": "eth0",
+                    "rx_bytes": 123456789,
+                    "rx_dropped": 0,
+                    "rx_errors": 0,
+                    "tx_bytes": 98765432,
+                    "tx_dropped": 0,
+                    "tx_errors": 0,
+                    "up": true
+                }
+            ],
+            "memory_usage": 45.0,
+            "node_id": "node-f",
+            "packet_loss": 0.0,
+            "rtt_ms": 11.0,
+            "tcp_retransmits": 0,
+            "timestamp": "2026-09-27T14:03:03Z"
+        },
+        "node_id": "node-f"
+    }
+]

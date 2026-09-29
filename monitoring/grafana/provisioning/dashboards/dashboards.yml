@@ -1,0 +1,14 @@
+apiVersion: 1
+
+providers:
+  - name: DNIIP
+    orgId: 1
+    folder: DNIIP
+    type: file
+    disableDeletion: false
+    updateIntervalSeconds: 30
+    options:
+      # Deliberately NOT under /etc/grafana/provisioning (see docker-compose.yml:
+      # that whole tree is bind-mounted read-only, so a second, separate mount
+      # can't be nested inside it — Docker fails creating the mountpoint).
+      path: /var/lib/grafana/dashboards

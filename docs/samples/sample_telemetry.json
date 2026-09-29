@@ -1,0 +1,117 @@
+[
+    {
+        "cpu_usage": 12.0,
+        "dns_resolvable": true,
+        "gateway_reachable": true,
+        "interfaces": [
+            {
+                "name": "eth0",
+                "rx_bytes": 123456789,
+                "rx_dropped": 0,
+                "rx_errors": 0,
+                "tx_bytes": 98765432,
+                "tx_dropped": 0,
+                "tx_errors": 0,
+                "up": true
+            }
+        ],
+        "memory_usage": 30.0,
+        "node_id": "node-a",
+        "packet_loss": 0.0,
+        "rtt_ms": 8.0,
+        "tcp_retransmits": 0,
+        "timestamp": "2026-09-27T14:03:03Z"
+    },
+    {
+        "cpu_usage": 22.0,
+        "dns_resolvable": true,
+        "gateway_reachable": true,
+        "interfaces": [
+            {
+                "name": "eth0",
+                "rx_bytes": 123456789,
+                "rx_dropped": 0,
+                "rx_errors": 0,
+                "tx_bytes": 98765432,
+                "tx_dropped": 0,
+                "tx_errors": 0,
+                "up": true
+            }
+        ],
+        "memory_usage": 30.0,
+        "node_id": "node-a",
+        "packet_loss": 0.0,
+        "rtt_ms": 8.0,
+        "tcp_retransmits": 0,
+        "timestamp": "2026-09-27T13:53:03Z"
+    },
+    {
+        "cpu_usage": 12.0,
+        "dns_resolvable": true,
+        "gateway_reachable": true,
+        "interfaces": [
+            {
+                "name": "eth0",
+                "rx_bytes": 123456789,
+                "rx_dropped": 0,
+                "rx_errors": 0,
+                "tx_bytes": 98765432,
+                "tx_dropped": 0,
+                "tx_errors": 0,
+                "up": true
+            }
+        ],
+        "memory_usage": 30.0,
+        "node_id": "node-a",
+        "packet_loss": 0.0,
+        "rtt_ms": 8.0,
+        "tcp_retransmits": 0,
+        "timestamp": "2026-09-27T13:43:03Z"
+    },
+    {
+        "cpu_usage": 22.0,
+        "dns_resolvable": true,
+        "gateway_reachable": true,
+        "interfaces": [
+            {
+                "name": "eth0",
+                "rx_bytes": 123456789,
+                "rx_dropped": 0,
+                "rx_errors": 0,
+                "tx_bytes": 98765432,
+                "tx_dropped": 0,
+                "tx_errors": 0,
+                "up": true
+            }
+        ],
+        "memory_usage": 30.0,
+        "node_id": "node-a",
+        "packet_loss": 0.0,
+        "rtt_ms": 8.0,
+        "tcp_retransmits": 0,
+        "timestamp": "2026-09-27T13:33:03Z"
+    },
+    {
+        "cpu_usage": 12.0,
+        "dns_resolvable": true,
+        "gateway_reachable": true,
+        "interfaces": [
+            {
+                "name": "eth0",
+                "rx_bytes": 123456789,
+                "rx_dropped": 0,
+                "rx_errors": 0,
+                "tx_bytes": 98765432,
+                "tx_dropped": 0,
+                "tx_errors": 0,
+                "up": true
+            }
+        ],
+        "memory_usage": 30.0,
+        "node_id": "node-a",
+        "packet_loss": 0.0,
+        "rtt_ms": 8.0,
+        "tcp_retransmits": 0,
+        "timestamp": "2026-09-27T13:23:03Z"
+    }
+]

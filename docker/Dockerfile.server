@@ -1,0 +1,38 @@
+FROM debian:bookworm-slim AS build
+
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    build-essential cmake pkg-config \
+    nlohmann-json3-dev libspdlog-dev libsqlite3-dev libpq-dev \
+    && rm -rf /var/lib/apt/lists/*
+
+WORKDIR /src
+COPY CMakeLists.txt ./
+COPY common ./common
+COPY agent ./agent
+COPY server ./server
+COPY scripts ./scripts
+
+RUN cmake -S . -B build -DCMAKE_BUILD_TYPE=Release && \
+    cmake --build build --target dniip-server dniip-api -j"$(nproc)"
+
+FROM debian:bookworm-slim AS server
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    libsqlite3-0 libspdlog-dev libpq5 \
+    && rm -rf /var/lib/apt/lists/*
+
+COPY --from=build /src/build/server/dniip-server /usr/local/bin/dniip-server
+
+EXPOSE 9000 9100
+ENTRYPOINT ["/usr/local/bin/dniip-server"]
+CMD ["9000", "/var/lib/dniip/server.sqlite"]
+
+FROM debian:bookworm-slim AS api
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    libsqlite3-0 libspdlog-dev libpq5 \
+    && rm -rf /var/lib/apt/lists/*
+
+COPY --from=build /src/build/server/dniip-api /usr/local/bin/dniip-api
+
+EXPOSE 8080
+ENTRYPOINT ["/usr/local/bin/dniip-api"]
+CMD ["8080", "/var/lib/dniip/server.sqlite"]

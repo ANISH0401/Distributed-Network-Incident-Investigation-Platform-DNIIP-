@@ -1,0 +1,64 @@
+[
+    {
+        "affected_nodes": [
+            "node-b"
+        ],
+        "category": "NETWORK",
+        "confidence": 0.75,
+        "created_at": "2026-09-27T14:03:03Z",
+        "incident_id": "INC-1001",
+        "root_cause": "Network Congestion",
+        "severity": "MEDIUM",
+        "status": "ACTIVE",
+        "symptoms": [
+            "node-b: packet loss 35%, RTT 320ms, 22 retransmits"
+        ]
+    },
+    {
+        "affected_nodes": [
+            "node-c",
+            "node-d"
+        ],
+        "category": "NETWORK",
+        "confidence": 0.85,
+        "created_at": "2026-09-27T14:03:03Z",
+        "incident_id": "INC-1002",
+        "root_cause": "Routing Failure",
+        "severity": "HIGH",
+        "status": "RESOLVED",
+        "symptoms": [
+            "node-c: gateway unreachable",
+            "node-d: gateway unreachable"
+        ]
+    },
+    {
+        "affected_nodes": [
+            "node-e"
+        ],
+        "category": "NETWORK",
+        "confidence": 0.95,
+        "created_at": "2026-09-27T14:03:03Z",
+        "incident_id": "INC-1003",
+        "root_cause": "Link Failure",
+        "severity": "MEDIUM",
+        "status": "ACTIVE",
+        "symptoms": [
+            "node-e: interface eth0 is down"
+        ]
+    },
+    {
+        "affected_nodes": [
+            "node-f"
+        ],
+        "category": "NETWORK",
+        "confidence": 0.8,
+        "created_at": "2026-09-27T14:03:03Z",
+        "incident_id": "INC-1004",
+        "root_cause": "DNS Service Outage",
+        "severity": "HIGH",
+        "status": "ACTIVE",
+        "symptoms": [
+            "node-f: DNS resolution failed"
+        ]
+    }
+]

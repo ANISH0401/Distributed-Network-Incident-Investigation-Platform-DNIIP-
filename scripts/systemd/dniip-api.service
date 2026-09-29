@@ -1,0 +1,24 @@
+[Unit]
+Description=DNIIP read-only REST API (dashboard backend)
+Documentation=https://github.com/your-org/distributed-network-incident-platform
+After=network-online.target postgresql.service
+Wants=network-online.target
+
+[Service]
+Type=simple
+# argv: port sqlite_fallback_path (see server/api_main.cpp)
+ExecStart=/usr/local/bin/dniip-api 8080 /var/lib/dniip/server.sqlite
+# Environment=DNIIP_PG_CONNINFO=host=localhost port=5432 dbname=dniip user=dniip password=CHANGE_ME
+Restart=on-failure
+RestartSec=5s
+
+User=dniip
+Group=dniip
+NoNewPrivileges=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/var/lib/dniip
+StateDirectory=dniip
+
+[Install]
+WantedBy=multi-user.target

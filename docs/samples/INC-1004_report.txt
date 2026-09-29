@@ -1,0 +1,19 @@
+INCIDENT REPORT
+Incident ID:
+INC-1004
+
+Symptoms:
+  - node-f: DNS resolution failed
+
+Root Cause:
+DNS Service Outage
+
+Confidence:
+80%
+
+Recommendations:
+  - Verify DNS server process health and reachability
+  - Check /etc/resolv.conf and resolver configuration
+  - Test resolution against a secondary DNS server
+  - Review DNS server logs for query failures
+

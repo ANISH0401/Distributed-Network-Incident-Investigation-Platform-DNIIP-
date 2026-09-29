@@ -1,0 +1,19 @@
+{
+    "affected_nodes": [
+        "node-c",
+        "node-d"
+    ],
+    "category": "NETWORK",
+    "confidence": 0.85,
+    "created_at": "2026-09-27T14:03:03Z",
+    "generated_at": "2026-09-27T14:03:03Z",
+    "incident_id": "INC-1002",
+    "report_text": "INCIDENT REPORT\nIncident ID:\nINC-1002\n\nSymptoms:\n  - node-c: gateway unreachable\n  - node-d: gateway unreachable\n\nRoot Cause:\nRouting Failure\n\nConfidence:\n85%\n\nRecommendations:\n  - Verify default gateway\n  - Check static routes\n  - Validate BGP advertisements\n  - Inspect router logs\n",
+    "root_cause": "Routing Failure",
+    "severity": "HIGH",
+    "status": "RESOLVED",
+    "symptoms": [
+        "node-c: gateway unreachable",
+        "node-d: gateway unreachable"
+    ]
+}

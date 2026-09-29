@@ -1,0 +1,20 @@
+INCIDENT REPORT
+Incident ID:
+INC-1002
+
+Symptoms:
+  - node-c: gateway unreachable
+  - node-d: gateway unreachable
+
+Root Cause:
+Routing Failure
+
+Confidence:
+85%
+
+Recommendations:
+  - Verify default gateway
+  - Check static routes
+  - Validate BGP advertisements
+  - Inspect router logs
+

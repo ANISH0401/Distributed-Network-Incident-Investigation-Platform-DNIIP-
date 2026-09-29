@@ -1,0 +1,36 @@
+FROM debian:bookworm-slim AS build
+
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    build-essential cmake pkg-config \
+    nlohmann-json3-dev libspdlog-dev libsqlite3-dev libpq-dev \
+    && rm -rf /var/lib/apt/lists/*
+
+WORKDIR /src
+COPY CMakeLists.txt ./
+COPY common ./common
+COPY agent ./agent
+COPY server ./server
+COPY scripts ./scripts
+
+RUN cmake -S . -B build -DCMAKE_BUILD_TYPE=Release && \
+    cmake --build build --target dniip-agent -j"$(nproc)"
+
+FROM debian:bookworm-slim
+# libspdlog-dev (not just the runtime .so) is installed here too: its exact
+# runtime package name/SONAME varies by Debian point release, whereas the
+# -dev package's dependency chain always resolves to whatever matches this
+# image's libspdlog-dev at build time.
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    libsqlite3-0 libspdlog-dev iproute2 iputils-ping dnsutils \
+    && rm -rf /var/lib/apt/lists/*
+
+COPY --from=build /src/build/agent/dniip-agent /usr/local/bin/dniip-agent
+
+# Raw ICMP sockets need CAP_NET_RAW; grant it on the binary rather than
+# requiring the container to run as root/--privileged.
+RUN apt-get update && apt-get install -y --no-install-recommends libcap2-bin && \
+    setcap cap_net_raw+ep /usr/local/bin/dniip-agent && \
+    apt-get purge -y libcap2-bin && rm -rf /var/lib/apt/lists/*
+
+ENTRYPOINT ["/usr/local/bin/dniip-agent"]
+CMD ["dniip-server", "9000", "/var/lib/dniip/agent.sqlite"]

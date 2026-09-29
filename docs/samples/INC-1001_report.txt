@@ -1,0 +1,19 @@
+INCIDENT REPORT
+Incident ID:
+INC-1001
+
+Symptoms:
+  - node-b: packet loss 35%, RTT 320ms, 22 retransmits
+
+Root Cause:
+Network Congestion
+
+Confidence:
+75%
+
+Recommendations:
+  - Check interface utilization and QoS policies
+  - Look for TCP retransmit/duplicate-ACK storms
+  - Review recent traffic pattern or DDoS indicators
+  - Consider link capacity upgrade or traffic shaping
+

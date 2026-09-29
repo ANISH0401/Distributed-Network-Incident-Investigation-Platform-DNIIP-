@@ -1,0 +1,27 @@
+[Unit]
+Description=DNIIP telemetry agent
+Documentation=https://github.com/your-org/distributed-network-incident-platform
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+# argv: server_host server_port sqlite_buffer_path (see agent/service/main.cpp)
+ExecStart=/usr/local/bin/dniip-agent dniip-server.internal 9000 /var/lib/dniip/agent.sqlite
+Restart=on-failure
+RestartSec=5s
+
+# Raw ICMP sockets (ConnectivityDiagnostics::ping) need CAP_NET_RAW; granted
+# directly rather than running as root.
+User=dniip
+Group=dniip
+AmbientCapabilities=CAP_NET_RAW
+CapabilityBoundingSet=CAP_NET_RAW
+NoNewPrivileges=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/var/lib/dniip
+StateDirectory=dniip
+
+[Install]
+WantedBy=multi-user.target

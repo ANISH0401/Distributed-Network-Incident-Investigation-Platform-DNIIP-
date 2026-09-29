@@ -1,0 +1,124 @@
+version: "3.9"
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: dniip
+      POSTGRES_USER: dniip
+      POSTGRES_PASSWORD: dniip
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U dniip -d dniip"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+    restart: unless-stopped
+
+  dniip-server:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile.server
+      target: server
+    environment:
+      DNIIP_PG_CONNINFO: "host=postgres port=5432 dbname=dniip user=dniip password=dniip"
+      DNIIP_METRICS_PORT: "9100"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    ports:
+      - "9000:9000"   # agent telemetry TCP port
+      - "9100:9100"   # /metrics for Prometheus
+    volumes:
+      - server-data:/var/lib/dniip
+    restart: unless-stopped
+
+  dniip-api:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile.server
+      target: api
+    command: ["8080"]
+    environment:
+      DNIIP_PG_CONNINFO: "host=postgres port=5432 dbname=dniip user=dniip password=dniip"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    ports:
+      - "8080:8080"
+    restart: unless-stopped
+
+  dashboard:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile.dashboard
+      args:
+        VITE_API_BASE: "http://localhost:8080"
+    depends_on:
+      - dniip-api
+    ports:
+      - "3002:80"  # host port picked to avoid clashing with other local dev servers commonly on 3000/3001
+    restart: unless-stopped
+
+  dniip-agent-a:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile.agent
+    hostname: agent-a  # node_id is gethostname(); pinned so it's predictable for the dashboard/integration test
+    depends_on:
+      - dniip-server
+    command: ["dniip-server", "9000", "/var/lib/dniip/agent.sqlite"]
+    volumes:
+      - agent-a-data:/var/lib/dniip
+    cap_add:
+      - NET_RAW
+    restart: unless-stopped
+
+  dniip-agent-b:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile.agent
+    hostname: agent-b
+    depends_on:
+      - dniip-server
+    command: ["dniip-server", "9000", "/var/lib/dniip/agent.sqlite"]
+    volumes:
+      - agent-b-data:/var/lib/dniip
+    cap_add:
+      - NET_RAW
+    restart: unless-stopped
+
+  prometheus:
+    image: prom/prometheus:latest
+    volumes:
+      - ../monitoring/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - prometheus-data:/prometheus
+    ports:
+      - "9090:9090"
+    depends_on:
+      - dniip-server
+    restart: unless-stopped
+
+  grafana:
+    image: grafana/grafana:latest
+    environment:
+      GF_AUTH_ANONYMOUS_ENABLED: "true"
+      GF_AUTH_ANONYMOUS_ORG_ROLE: "Viewer"
+    volumes:
+      - ../monitoring/grafana/provisioning:/etc/grafana/provisioning:ro
+      - ../monitoring/grafana/dashboards:/var/lib/grafana/dashboards:ro
+      - grafana-data:/var/lib/grafana
+    ports:
+      - "3000:3000"
+    depends_on:
+      - prometheus
+    restart: unless-stopped
+
+volumes:
+  postgres-data:
+  server-data:
+  agent-a-data:
+  agent-b-data:
+  prometheus-data:
+  grafana-data:

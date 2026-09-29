@@ -1,0 +1,70 @@
+{
+  "title": "DNIIP Overview",
+  "uid": "dniip-overview",
+  "timezone": "browser",
+  "schemaVersion": 39,
+  "version": 1,
+  "refresh": "15s",
+  "time": { "from": "now-1h", "to": "now" },
+  "panels": [
+    {
+      "id": 1,
+      "title": "Connected Agents",
+      "type": "stat",
+      "gridPos": { "h": 6, "w": 6, "x": 0, "y": 0 },
+      "targets": [{ "expr": "dniip_connected_agents", "refId": "A" }]
+    },
+    {
+      "id": 2,
+      "title": "Agent Availability Ratio",
+      "type": "gauge",
+      "gridPos": { "h": 6, "w": 6, "x": 6, "y": 0 },
+      "fieldConfig": { "defaults": { "min": 0, "max": 1, "unit": "percentunit" }, "overrides": [] },
+      "targets": [{ "expr": "dniip_agent_availability_ratio", "refId": "A" }]
+    },
+    {
+      "id": 3,
+      "title": "Incident Count (total)",
+      "type": "stat",
+      "gridPos": { "h": 6, "w": 6, "x": 12, "y": 0 },
+      "targets": [{ "expr": "dniip_incident_count_total", "refId": "A" }]
+    },
+    {
+      "id": 4,
+      "title": "Avg Processing Latency (ms)",
+      "type": "stat",
+      "gridPos": { "h": 6, "w": 6, "x": 18, "y": 0 },
+      "fieldConfig": { "defaults": { "unit": "ms" }, "overrides": [] },
+      "targets": [{ "expr": "dniip_api_latency_ms_avg", "refId": "A" }]
+    },
+    {
+      "id": 5,
+      "title": "Packet Loss % by Node",
+      "type": "timeseries",
+      "gridPos": { "h": 8, "w": 12, "x": 0, "y": 6 },
+      "fieldConfig": { "defaults": { "unit": "percent" }, "overrides": [] },
+      "targets": [
+        { "expr": "dniip_node_packet_loss_percent", "legendFormat": "{{node_id}}", "refId": "A" }
+      ]
+    },
+    {
+      "id": 6,
+      "title": "Node Health Score",
+      "type": "timeseries",
+      "gridPos": { "h": 8, "w": 12, "x": 12, "y": 6 },
+      "fieldConfig": { "defaults": { "min": 0, "max": 100 }, "overrides": [] },
+      "targets": [
+        { "expr": "dniip_node_health_score", "legendFormat": "{{node_id}}", "refId": "A" }
+      ]
+    },
+    {
+      "id": 7,
+      "title": "Telemetry Samples Processed (rate)",
+      "type": "timeseries",
+      "gridPos": { "h": 8, "w": 24, "x": 0, "y": 14 },
+      "targets": [
+        { "expr": "rate(dniip_telemetry_samples_total[5m])", "legendFormat": "samples/sec", "refId": "A" }
+      ]
+    }
+  ]
+}
